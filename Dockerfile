@@ -15,4 +15,4 @@ RUN opam pin add -n mirage-bootvar-xen mirage-bootvar-xen
 RUN opam pin add -n mirage-xen mirage-xen
 RUN opam pin add -n ocb-stubblr ocb-stubblr
 
-RUN opam install -y mirage-xen
+RUN opam depext -i -y mirage-xen
