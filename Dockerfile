@@ -21,6 +21,10 @@ RUN opam pin add -n mirage-bootvar-xen mirage-bootvar-xen
 RUN opam pin add -n mirage-xen mirage-xen
 RUN opam pin add -n ocb-stubblr ocb-stubblr
 
+# Install the xenplat variant of ocaml-freestanding, I don't care about the others.
+RUN opam depext -i -y xenplat
+RUN opam depext -i -y ocaml-freestanding
+
 # For a hello world app:
 RUN git clone https://github.com/mirage/mirage-skeleton
 
