@@ -1,4 +1,4 @@
-FROM ocaml/opam2:4.07
+FROM ocaml/opam2:4.07 AS build
 # add editing tools
 RUN sudo apt-get install vim bash -y
 # we will need the mirage configure tool
@@ -33,3 +33,7 @@ RUN opam exec mirage -- configure -t xen
 COPY mirage-unikernel-hello-xen.opam .
 RUN opam exec make depends
 RUN opam exec make
+
+FROM alpine
+COPY --from=build /home/opam/src/mirage-skeleton/tutorial/hello/hello.xen /
+COPY --from=build /home/opam/src/mirage-skeleton/tutorial/hello/hello.xl /
