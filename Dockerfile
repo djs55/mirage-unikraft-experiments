@@ -32,7 +32,7 @@ RUN opam exec mirage -- configure -t xen
 # Remove the bad < 0.6.0 version constraint on mirage-bootvar-xen
 COPY mirage-unikernel-hello-xen.opam .
 RUN opam exec make depends
-RUN opam exec make
+RUN opam exec mirage build -- -v
 
 FROM alpine
 COPY --from=build /home/opam/src/mirage-skeleton/tutorial/hello/hello.xen /
